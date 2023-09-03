@@ -9,7 +9,7 @@ public class Curso {
 
     //Métodos
 
-    public Curso(String nombre, String sede, int ID_curso, int nota, String estudiante) {
+    public Curso(String nombre, String sede, int ID_curso, Integer nota, String estudiante) {
         this.nombre = nombre;
         this.sede = sede;
         this.ID_curso = ID_curso;

@@ -14,6 +14,12 @@ public class PrincipalUniversidad{
 
 
         ArrayList<Curso> cursos = new ArrayList<Curso>();
+        cursos.add(new Curso("Matemática", null,01 , null, null));
+        cursos.add(new Curso("Lenguaje", null,02 , null, null));
+        cursos.add(new Curso("Química", null,03 , null, null));
+        cursos.add(new Curso("Física", null,04 , null, null));
+        cursos.add(new Curso("Matemática", null,05 , null, null));
+        cursos.add(new Curso("Matemática", null,06 , null, null));
 
 
         ArrayList<Sede> sedes = new ArrayList<Sede>();
@@ -137,6 +143,13 @@ public class PrincipalUniversidad{
 
                         System.out.println("Estudiante seleccionado: " + estudiantes.get(aggEst-1).getNombre());
 
+                        System.out.println("Estos son los cursos, de cual desea agregar una nota?");
+
+
+                        for (Curso curso : cursos) {
+                            i++;
+                            System.out.println(i+". " + curso.getNombre());
+                        }
 
 
 
