@@ -126,16 +126,16 @@ public class PrincipalUniversidad{
                     opc=0;
                     while(opc==0){
                         System.out.println("Estos son los estudiantes que aún no les han asignado notas:");
-                        // for (Estudiante estudiante : estudiantes) {
-                        //     i++;
-                        //     System.out.println(i+". " + estudiante.getNombre());
-                        // }
+                        for (Estudiante estudiante : estudiantes) {
+                            i++;
+                            System.out.println(i+". " + estudiante.getNombre());
+                        }
 
                         System.out.println("A que estudiante desea agregarle sus notas?");
                         int aggEst = scan.nextInt();
                         scan.nextLine();
 
-                        System.out.println("Estudiante seleccionado: " + estudiantes.get(aggEst-1));
+                        System.out.println("Estudiante seleccionado: " + estudiantes.get(aggEst-1).getNombre());
 
 
 
