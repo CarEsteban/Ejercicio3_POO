@@ -3,12 +3,14 @@ import java.math.*;
 public class Sede {
     //Atributos
     String nombreSede;
+    int ID;
     ArrayList<Curso> cursos = new ArrayList<Curso>();
     ArrayList<Estudiante> estudiante = new ArrayList<Estudiante>();
     
     //Métodos
 
-    public Sede(String nombreSede, ArrayList<Curso> cursos, ArrayList<Estudiante> estudiante) {
+    public Sede(int ID, String nombreSede, ArrayList<Curso> cursos, ArrayList<Estudiante> estudiante) {
+        this.ID = ID;
         this.nombreSede = nombreSede;
         this.cursos = cursos;
         this.estudiante = estudiante;
@@ -26,6 +28,13 @@ public class Sede {
         return estudiante;
     }
 
+    public int getID(){
+        return ID;
+    }
+
+
+
+    
     public double getPromedio(){
         double promedio = 0 ;
         return promedio;

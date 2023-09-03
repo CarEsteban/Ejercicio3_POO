@@ -4,12 +4,13 @@ public class Curso {
     //Atributos
     String nombre, sede;
     int ID_curso, nota;
-    ArrayList<Estudiante> estudiante = new ArrayList<Estudiante>();
+    String estudiante;
+    //ArrayList<Estudiante> estudiante = new ArrayList<Estudiante>();
 
 
     //Métodos
 
-    public Curso(String nombre, String sede, int ID_curso, int nota, ArrayList<Estudiante> estudiante) {
+    public Curso(String nombre, String sede, int ID_curso, int nota, String estudiante) {
         this.nombre = nombre;
         this.sede = sede;
         this.ID_curso = ID_curso;
@@ -38,8 +39,14 @@ public class Curso {
     }
 
 
-    public ArrayList<Estudiante> getEstudiante() {
+    public String getEstudiante() {
         return estudiante;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Curso de " + nombre + ", con ID: " + ID_curso + " y nota de" + nota;
     }
 
 
