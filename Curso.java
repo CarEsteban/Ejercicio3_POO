@@ -1,11 +1,10 @@
-import java.util.ArrayList;
+
 
 public class Curso {
     //Atributos
     String nombre, sede;
     int ID_curso, nota;
     String estudiante;
-    //ArrayList<Estudiante> estudiante = new ArrayList<Estudiante>();
 
 
     //Métodos

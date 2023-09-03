@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.sound.midi.Sequencer.SyncMode;
 
 import java.math.*;
 
@@ -9,8 +8,14 @@ public class PrincipalUniversidad{
     public static void main(String[] args) throws InterruptedException {
 
         boolean menu = true;
-        int opcMenu = 0,opcSede=0,opcEst=0,aux=0,cantidadSede=0;
+        int opcMenu = 0,opcSede=0,opc=0,aux=0,i=0;
         Scanner scan = new Scanner(System.in);
+
+
+
+        ArrayList<Curso> cursos = new ArrayList<Curso>();
+
+
         ArrayList<Sede> sedes = new ArrayList<Sede>();
         ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
 
@@ -21,8 +26,8 @@ public class PrincipalUniversidad{
         sedes.add(new Sede(2, "Guatemala", null, null));
         sedes.add(new Sede(3, "Escuintla", null, null));
             
-
-        for (int i = 0; i < sedes.size(); i++) {
+        //Se agregó este fragmento del código para poder contador cuantos estudiantes hay por sede y así poder usar el dato para las estadísticas
+        for ( i = 0; i < sedes.size(); i++) {
             estudiantesPorSede.add(0);
 
         }
@@ -49,13 +54,13 @@ public class PrincipalUniversidad{
                 case 1:
                     System.out.println("BIENVENIDO AL REGISTRO DE USUARIOS");
                     System.out.println("==================================");
-                    opcEst=0;
-                    while(opcEst==0){
+                    opc=0;
+                    while(opc==0){
 
                         aux++;
                         try {
                             System.out.println("De que sede es el estudiante?");
-                            for (int i = 0; i < sedes.size(); i++) {
+                            for ( i = 0; i < sedes.size(); i++) {
                                 Sede sede = sedes.get(i);
                                 System.out.println((i+1) + ": " + sede.getNombreSede());
                             }
@@ -69,9 +74,10 @@ public class PrincipalUniversidad{
                         } catch (Exception e) {
                             System.out.println("Error " + e);
                             Thread.sleep(1000);
+                            break;
                         }
 
-                        for(int i=0;i<sedes.size(); i++){
+                        for( i=0;i<sedes.size(); i++){
                             if(opcSede==sedes.get(i).getID()){
                                 int contadorSede = estudiantesPorSede.get(i);
                                 contadorSede++;
@@ -79,7 +85,7 @@ public class PrincipalUniversidad{
                             }
                         }
 
-                        for(int i = 0; i<sedes.size(); i++){
+                        for( i = 0; i<sedes.size(); i++){
                             System.out.println("a" + estudiantesPorSede.get(i));
                         }
                                     
@@ -89,7 +95,7 @@ public class PrincipalUniversidad{
                         System.out.print("Ingrese el apellido: ");
                         String apellido = scan.nextLine();
 
-                        System.out.print("Su código único sería: " + aux);
+                        System.out.println("Su código único sería: " + aux);
 
                         System.out.print("Ingrese la fecha de nacimiento: ");
                         String fechaNac = scan.nextLine();
@@ -106,26 +112,58 @@ public class PrincipalUniversidad{
 
                         
                         System.out.println("Desea ingresar otro estudiante? (0 para sí, 1 para no)");
-                        opcEst = scan.nextInt();
+                        opc = scan.nextInt();
                         scan.nextLine();
                     }
+
 
                     break;
 
                 case 2:
-                    System.out.println("BIENVENIDO");
-                    System.out.println("==================================");
-                    for (Estudiante estudiante : estudiantes) {
-                        System.out.println(estudiante);
+                    System.out.println("BIENVENIDO AL INGRESO DE NOTAS X ESTUDIANTE");
+                    System.out.println("============================================");
+                    
+                    opc=0;
+                    while(opc==0){
+                        System.out.println("Estos son los estudiantes que aún no les han asignado notas:");
+                        // for (Estudiante estudiante : estudiantes) {
+                        //     i++;
+                        //     System.out.println(i+". " + estudiante.getNombre());
+                        // }
+
+                        System.out.println("A que estudiante desea agregarle sus notas?");
+                        int aggEst = scan.nextInt();
+                        scan.nextLine();
+
+                        System.out.println("Estudiante seleccionado: " + estudiantes.get(aggEst-1));
+
+
+
+
+
+
+
+
+
+                        System.out.println("Desea ingresar otro estudiante? (0 para sí, 1 para no)");
+                        opc = scan.nextInt();
+                        scan.nextLine();
                     }
-                    break;
+
+
+
+
+
+
+
+
 
                 case 3:
                     break;
 
                 case 4:
                     System.out.println("Saliendo del programa...");
-                    for(int i=0;i<=30;i++){
+                    for( i=0;i<=30;i++){
                         System.out.println(".");
                         Thread.sleep(20);
                     }
@@ -140,10 +178,7 @@ public class PrincipalUniversidad{
 
 
 
-
-        //ArrayList<Curso> cursos = new ArrayList<Curso>();
-        //Curso curso1 = new Curso("Matemáticas", "Mazatenango", 1  , 90);
-        //Curso curso2 = new Curso("Lenguaje", "Mazatenango", 2  , 90);
+        scan.close();
 
 
 
