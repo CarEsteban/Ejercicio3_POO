@@ -18,7 +18,7 @@ public class Estudiante {
         this.cursos = cursos;
     }
 
-    public String getNombre() {
+    public String getNombres() {
         return this.nombre;
     }
 
@@ -32,6 +32,10 @@ public class Estudiante {
 
     public ArrayList<Curso> getCursos() {
         return cursos;
+    }
+
+    public void setCursos(ArrayList<Curso> cursos){
+        this.cursos = cursos;
     }
 
     @Override

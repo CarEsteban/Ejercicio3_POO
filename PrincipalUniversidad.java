@@ -1,25 +1,24 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 import java.math.*;
 
 public class PrincipalUniversidad{
     public static void main(String[] args) throws InterruptedException {
 
         boolean menu = true;
-        int opcMenu = 0,opcSede=0,opc=0,aux=0,i=0;
+        int opcMenu = 0,opcSede=0,opc=0,aux=0;
         Scanner scan = new Scanner(System.in);
 
+        ArrayList<Curso> cursosEstudiantes = new ArrayList<Curso>();
+        ArrayList<Curso> cursosbase = new ArrayList<Curso>();
 
-
-        ArrayList<Curso> cursos = new ArrayList<Curso>();
-        cursos.add(new Curso("Matemática", null,01 , null, null));
-        cursos.add(new Curso("Lenguaje", null,02 , null, null));
-        cursos.add(new Curso("Química", null,03 , null, null));
-        cursos.add(new Curso("Física", null,04 , null, null));
-        cursos.add(new Curso("Matemática", null,05 , null, null));
-        cursos.add(new Curso("Matemática", null,06 , null, null));
+        cursosbase.add(new Curso("Matemática",01 ));
+        cursosbase.add(new Curso("Lenguaje",02 ));
+        cursosbase.add(new Curso("Química",03 ));
+        cursosbase.add(new Curso("Física",04 ));
+        cursosbase.add(new Curso("Comprensión Lectora",05 ));
+        cursosbase.add(new Curso("Estadística",06 ));
 
 
         ArrayList<Sede> sedes = new ArrayList<Sede>();
@@ -33,12 +32,12 @@ public class PrincipalUniversidad{
         sedes.add(new Sede(3, "Escuintla", null, null));
             
         //Se agregó este fragmento del código para poder contador cuantos estudiantes hay por sede y así poder usar el dato para las estadísticas
-        for ( i = 0; i < sedes.size(); i++) {
+        for (int i = 0; i < sedes.size(); i++) {
             estudiantesPorSede.add(0);
 
         }
-
         while(menu){
+            System.out.println("BIENVENIDO AL SERVICIO PRINCIPAL DE LA UNIVERSIDAD");
             try {
                 System.out.println("Ingrese la opción que desea seguir: \n1. Ingresar estudiante\n2. Ingresar notas del estudiante\n3. Mostrar estadísticas por sede\n4. Salir");
                
@@ -55,7 +54,6 @@ public class PrincipalUniversidad{
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
             }
-
             switch(opcMenu){
                 case 1:
                     System.out.println("BIENVENIDO AL REGISTRO DE USUARIOS");
@@ -66,7 +64,7 @@ public class PrincipalUniversidad{
                         aux++;
                         try {
                             System.out.println("De que sede es el estudiante?");
-                            for ( i = 0; i < sedes.size(); i++) {
+                            for (int i = 0; i < sedes.size(); i++) {
                                 Sede sede = sedes.get(i);
                                 System.out.println((i+1) + ": " + sede.getNombreSede());
                             }
@@ -83,7 +81,7 @@ public class PrincipalUniversidad{
                             break;
                         }
 
-                        for( i=0;i<sedes.size(); i++){
+                        for(int i=0;i<sedes.size(); i++){
                             if(opcSede==sedes.get(i).getID()){
                                 int contadorSede = estudiantesPorSede.get(i);
                                 contadorSede++;
@@ -91,7 +89,7 @@ public class PrincipalUniversidad{
                             }
                         }
 
-                        for( i = 0; i<sedes.size(); i++){
+                        for( int i = 0; i<sedes.size(); i++){
                             System.out.println("a" + estudiantesPorSede.get(i));
                         }
                                     
@@ -112,7 +110,7 @@ public class PrincipalUniversidad{
                         System.out.println("El estudiante " +  nombre + " es de la sede: " + sedes.get(opcSede-1).getNombreSede());
                         String sede = sedes.get(opcSede-1).getNombreSede();
                         
-                        estudiantes.add(new Estudiante(nombre, apellido, aux, fechaNac, correo, sede, null));
+                        estudiantes.add(new Estudiante(nombre, apellido, aux, fechaNac, correo, sede,null));
 
                         System.out.println(estudiantes.get(aux-1));
 
@@ -131,26 +129,63 @@ public class PrincipalUniversidad{
                     
                     opc=0;
                     while(opc==0){
+                        
                         System.out.println("Estos son los estudiantes que aún no les han asignado notas:");
-                        for (Estudiante estudiante : estudiantes) {
-                            i++;
-                            System.out.println(i+". " + estudiante.getNombre());
+                       
+                        if (estudiantes.isEmpty()) {
+                            System.out.println("Todavía no hay estudiantes");
+                            break;
+                        } else {
+                            
+                            for (int i = 0; i < estudiantes.size(); i++) {
+                                if(estudiantes.get(i).getCursos()==null){
+                                    System.out.println(estudiantes.get(i).getCodigoUnico() + ". " + estudiantes.get(i).getNombres());
+                                }else if(estudiantes.get(i).getCursos()!=null){
+                                    System.out.println("Ya no hay mas estudiantes");
+                                    opc=1;
+                                    break;
+                                }
+                            }
                         }
+                        
+                        if(opc==1){
+                            break;
+                        }
+
 
                         System.out.println("A que estudiante desea agregarle sus notas?");
                         int aggEst = scan.nextInt();
                         scan.nextLine();
 
-                        System.out.println("Estudiante seleccionado: " + estudiantes.get(aggEst-1).getNombre());
+                        System.out.println("Estudiante seleccionado: " + estudiantes.get(aggEst-1).getNombres());
 
-                        System.out.println("Estos son los cursos, de cual desea agregar una nota?");
+                        System.out.println("Estos son los cursos actuales");
+
+                        System.out.println("===========================================");
+                        for (Curso curso : cursosbase) {
+                            System.out.println(curso.getID_curso() + ". " + curso.getNombre());
+                        }
+                        System.out.println("===========================================");
+
+                        for (Curso curso : cursosbase) {
+                            System.out.println("Ingrese la del curso de " + curso.getNombre());
+                            int nota =  scan.nextInt();
+
+                            curso.setNota(nota);
 
 
-                        for (Curso curso : cursos) {
-                            i++;
-                            System.out.println(i+". " + curso.getNombre());
                         }
 
+                        estudiantes.get(aggEst-1).setCursos(cursosbase);
+
+                        System.out.println("===========================================");
+                        for (Estudiante estudiante : estudiantes) {
+                            System.out.println(estudiante.getNombres());
+                            for(Estudiante estudiante2 : estudiantes){
+                                System.out.println(estudiante2.getCursos());
+                            }
+                        }
+                        System.out.println("===========================================");
 
 
 
@@ -158,9 +193,7 @@ public class PrincipalUniversidad{
 
 
 
-                        System.out.println("Desea ingresar otro estudiante? (0 para sí, 1 para no)");
-                        opc = scan.nextInt();
-                        scan.nextLine();
+
                     }
 
 
@@ -176,7 +209,7 @@ public class PrincipalUniversidad{
 
                 case 4:
                     System.out.println("Saliendo del programa...");
-                    for( i=0;i<=30;i++){
+                    for( int i=0;i<=30;i++){
                         System.out.println(".");
                         Thread.sleep(20);
                     }
@@ -184,6 +217,20 @@ public class PrincipalUniversidad{
                     System.out.print("\033[H\033[2J");
                     System.out.flush();
                     break;
+            }
+            
+            try {
+                System.out.println("Desea regresar al menu principal? (0 para regresar, 1 para terminar el programa)");
+                opc = scan.nextInt();
+                scan.nextLine();
+                if(opc==0){
+                    menu=true;
+                }else{
+                    menu=false;
+                }
+            } catch (Exception e) {
+                System.out.println("Opción no válida");
+                break;
             }
         }
 

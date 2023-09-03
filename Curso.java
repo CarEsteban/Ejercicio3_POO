@@ -9,14 +9,21 @@ public class Curso {
 
     //Métodos
 
-    public Curso(String nombre, String sede, int ID_curso, Integer nota, String estudiante) {
+    public Curso(String nombre, int ID_curso) {
         this.nombre = nombre;
-        this.sede = sede;
         this.ID_curso = ID_curso;
-        this.nota = nota;
-        this.estudiante = estudiante;
     }
 
+    //Se agregaron setSede , setEstudiante y setNota para poder setear los valores sin necesidad del constructor cuando se le pida al usuario las notas
+    public void setSede(String sede){
+        this.sede = sede;
+    }
+    public void setNota(int nota){
+        this.nota = nota;
+    }
+    public void setEstudiante(String estudiante){
+        this.estudiante = estudiante;
+    }
 
     public String getNombre() {
         return nombre;
@@ -45,7 +52,7 @@ public class Curso {
 
     @Override
     public String toString() {
-        return "Curso de " + nombre + ", con ID: " + ID_curso + " y nota de" + nota;
+        return "Curso de " + nombre + ", con ID: " + ID_curso + " y nota de " + nota;
     }
 
 
