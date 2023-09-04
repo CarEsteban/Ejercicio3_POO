@@ -130,79 +130,74 @@ public class PrincipalUniversidad{
                     opc=0;
                     while(opc==0){
                         
-                        System.out.println("Estos son los estudiantes que aún no les han asignado notas:");
-                       
-                        if (estudiantes.isEmpty()) {
-                            System.out.println("Todavía no hay estudiantes");
-                            break;
-                        } else {
-                            
-                            for (int i = 0; i < estudiantes.size(); i++) {
-                                if(estudiantes.get(i).getCursos()==null){
-                                    System.out.println(estudiantes.get(i).getCodigoUnico() + ". " + estudiantes.get(i).getNombres());
-                                }else if(estudiantes.get(i).getCursos()!=null){
-                                    System.out.println("Ya no hay mas estudiantes");
-                                    opc=1;
-                                    break;
-                                }
-                            }
-                        }
+                        for(int i=0; i<estudiantes.size();i++){
+                            System.out.println("Estos son los estudiantes que aún no les han asignado notas:");
                         
-                        if(opc==1){
-                            break;
+                            if (estudiantes.isEmpty()) {
+                                System.out.println("Todavía no hay estudiantes");
+                                break;
+                            } else {
+
+                                boolean hayEstudiantesConCursosNulos = false;
+
+                                for (int j = 0; j < estudiantes.size(); j++) {
+                                    if (estudiantes.get(j).getCursos() == null) {
+                                        System.out.println(estudiantes.get(j).getCodigoUnico() + ". " + estudiantes.get(j).getNombres());
+                                        hayEstudiantesConCursosNulos = true; 
+                                    }
+                                }
+
+                                if (!hayEstudiantesConCursosNulos) {
+                                    System.out.println("Ya no hay más estudiantes");
+                                    opc = 1;
+                                }
+
+                            }
+                            
+                            if(opc==1){
+                                break;
+                            }
+
+                            System.out.println("A que estudiante desea agregarle sus notas? (0 para no asignar)");
+                            int aggEst = scan.nextInt();
+                            scan.nextLine();
+
+                            if(aggEst==0){
+                                opc=1;
+                                break;
+                            }
+
+                            System.out.println("Estudiante seleccionado: " + estudiantes.get(aggEst-1).getNombres());
+
+                            System.out.println("Estos son los cursos actuales");
+
+                            System.out.println("===========================================");
+                            for (Curso curso : cursosbase) {
+                                System.out.println(curso.getID_curso() + ". " + curso.getNombre());
+                            }
+                            System.out.println("===========================================");
+
+                            for (Curso curso : cursosbase) {
+                                System.out.println("Ingrese la del curso de " + curso.getNombre());
+                                int nota =  scan.nextInt();
+                                if(nota>100 || nota<0){
+                                    System.out.println("Lo siento, esta nota no es real rey");
+                                    break;
+                                }else{
+                                    curso.setNota(nota);
+                                }
+
+
+                            }
+
+                            cursosEstudiantes.add(cursosbase);
+
+                            estudiantes.get(aggEst-1).setCursos(cursosEstudiantes.get(i));
+
                         }
-
-
-                        System.out.println("A que estudiante desea agregarle sus notas?");
-                        int aggEst = scan.nextInt();
-                        scan.nextLine();
-
-                        System.out.println("Estudiante seleccionado: " + estudiantes.get(aggEst-1).getNombres());
-
-                        System.out.println("Estos son los cursos actuales");
-
-                        System.out.println("===========================================");
-                        for (Curso curso : cursosbase) {
-                            System.out.println(curso.getID_curso() + ". " + curso.getNombre());
-                        }
-                        System.out.println("===========================================");
-
-                        for (Curso curso : cursosbase) {
-                            System.out.println("Ingrese la del curso de " + curso.getNombre());
-                            int nota =  scan.nextInt();
-
-                            curso.setNota(nota);
-
-
-                        }
-
-                        cursosEstudiantes.add(cursosbase);
-
-                        estudiantes.get(aggEst-1).setCursos(cursosEstudiantes.get(aggEst-1));
-
-                        System.out.println("===========================================");
-                        System.out.println(estudiantes.get(aggEst-1).getNombres());
-                        System.out.println(estudiantes.get(aggEst-1).getCursos());
-                        System.out.println("===========================================");
-                        System.out.println(estudiantes.get(aggEst).getNombres());
-                        System.out.println(estudiantes.get(aggEst).getCursos());
-                        System.out.println("===========================================");
-
-
-
-
-
-
 
 
                     }
-
-
-
-
-
-
-
 
 
                 case 3:
