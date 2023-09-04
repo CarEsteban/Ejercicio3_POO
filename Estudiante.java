@@ -34,6 +34,28 @@ public class Estudiante {
         return cursos;
     }
 
+    
+    // public String getCursoEspecficio(String curso) {
+    //     for (Curso x : cursos) {
+    //         if(x.getNombre().equals(curso)){
+    //             return curso;
+    //         }
+    //     }
+    //     return null;
+
+    // }
+    public Curso getCursoEspecficio(String nombreCurso) {
+        for (Curso curso : cursos) {
+            if (curso.getNombre().equals(nombreCurso)) {
+                return curso;
+            }
+        }
+        return null; // Si no se encontró el curso
+    }
+    
+
+
+
     public void setCursos(ArrayList<Curso> cursos){
         this.cursos = cursos;
     }

@@ -4,7 +4,6 @@ public class Curso {
     //Atributos
     String nombre, sede;
     int ID_curso, nota;
-    String estudiante;
 
 
     //Métodos
@@ -21,18 +20,11 @@ public class Curso {
     public void setNota(int nota){
         this.nota = nota;
     }
-    public void setEstudiante(String estudiante){
-        this.estudiante = estudiante;
-    }
-
+    
     public String getNombre() {
         return nombre;
     }
 
-
-    public String getSede() {
-        return sede;
-    }
 
 
     public int getID_curso() {
@@ -44,10 +36,6 @@ public class Curso {
         return nota;
     }
 
-
-    public String getEstudiante() {
-        return estudiante;
-    }
 
 
     @Override

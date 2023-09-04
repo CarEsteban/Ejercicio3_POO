@@ -9,11 +9,14 @@ public class Sede {
     
     //Métodos
 
-    public Sede(int ID, String nombreSede, ArrayList<Curso> cursos, ArrayList<Estudiante> estudiante) {
+    public Sede(int ID, String nombreSede, ArrayList<Estudiante> estudiante) {
         this.ID = ID;
         this.nombreSede = nombreSede;
-        this.cursos = cursos;
         this.estudiante = estudiante;
+    }
+
+    public void setCursos(ArrayList<Curso> cursos){
+        this.cursos = cursos;
     }
 
     public String getNombreSede() {
@@ -32,7 +35,9 @@ public class Sede {
         return ID;
     }
 
-
+    // public int getNotaCurso(int i){
+    //     return cursos.get(i).getNota();
+    // }
 
     
     public double getPromedio(){
