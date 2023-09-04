@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import java.math.*;
@@ -88,11 +89,7 @@ public class PrincipalUniversidad{
                                 estudiantesPorSede.set(i, contadorSede);
                             }
                         }
-
-                        for( int i = 0; i<sedes.size(); i++){
-                            System.out.println("a" + estudiantesPorSede.get(i));
-                        }
-                                    
+     
                         System.out.print("Ingrese el nombre: ");
                         String nombre = scan.nextLine();
 
@@ -264,53 +261,90 @@ public class PrincipalUniversidad{
                 case 3:
                     System.out.println("BIENVENIDO A LAS ESTADÍSTICAS POR SEDE");
 
-                    System.out.println(estudiantes);
-                    System.out.println("-----------------------------------------");
-                    System.out.println(cursosEstudiantes);
-
-                    // for (int i = 0; i < sedes.size(); i++) {
-                    //     System.out.println("Estadísticas de: "+sedes.get(i).getNombreSede());
-                    //     for (int j = 0; j < cursosbase.size(); j++) {
-                    //         for (int z = 0; z < estudiantes.size(); z++) {
-                    //             if(estudiantes.get(z).getSede()==sedes.get(i).getNombreSede()){
-                    //                 if(estudiantes.get(z).getCursoEspecficio(cursosbase.get(j).getNombre())==cursosbase.get(j).getNombre()){
-                    //                     System.out.println(estudiantes.get(z).getNombres());
-                    //                     System.out.println(cursosEstudiantes.get(z).get(j).getNombre());
-                    //                     System.out.println(cursosEstudiantes.get(z).get(j).getNota());
-                    //                     System.out.println("================================================");
-                    //                 }
-
-                    //             }
-                    //         }
-                            
-                    //     }
-
-                    // }
+                
                     for (int i = 0; i < sedes.size(); i++) {
-                        System.out.println("Estadísticas de: " + sedes.get(i).getNombreSede());
-                    
+                        System.out.println("===========================================================");
+                        System.out.println("---------------------------------------------------------------");
+                        System.out.println("===========================================================");
+                        System.out.println("Estadísticas de la Sede: " + sedes.get(i).getNombreSede());
+                        System.out.println("Registro de estudiantes en la sede " + estudiantesPorSede.get(i));
+                        
                         for (int j = 0; j < cursosbase.size(); j++) {
-                            // Imprimir el nombre del curso
                             System.out.println("Curso: " + cursosbase.get(j).getNombre());
-                    
+                            
+                            ArrayList<Integer> notasCursoSede = new ArrayList<>();
+                            
                             for (int z = 0; z < estudiantes.size(); z++) {
                                 if (estudiantes.get(z).getSede().equals(sedes.get(i).getNombreSede())) {
-                                    System.out.println(estudiantes.get(z).getNombres());
-                    
-                                    // Buscar el curso específico en la lista de cursos del estudiante
                                     Curso cursoEspecifico = estudiantes.get(z).getCursoEspecficio(cursosbase.get(j).getNombre());
-                    
                                     if (cursoEspecifico != null) {
-                                        System.out.println("Nota: " + cursoEspecifico.getNota());
-                                    } else {
-                                        System.out.println("No se asignó nota para este curso.");
+                                        int nota = cursoEspecifico.getNota();
+                                        notasCursoSede.add(nota);
                                     }
-                                    System.out.println("================================================");
                                 }
                             }
+                            
+                            if (!notasCursoSede.isEmpty()) {
+                                int sum = 0;
+                                int max = Integer.MIN_VALUE;
+                                int min = Integer.MAX_VALUE;
+                                int mode = 0;
+                                
+                                for (int nota : notasCursoSede) {
+                                    sum += nota;
+                                    if (nota > max) {
+                                        max = nota;
+                                    }
+                                    if (nota < min) {
+                                        min = nota;
+                                    }
+                                }
+                                
+                                double promedio = (double) sum / notasCursoSede.size();
+                                
+                                Collections.sort(notasCursoSede);
+                                int size = notasCursoSede.size();
+                                int mediana;
+                                if (size % 2 == 0) {
+                                    mediana = (notasCursoSede.get(size / 2 - 1) + notasCursoSede.get(size / 2)) / 2;
+                                } else {
+                                    mediana = notasCursoSede.get(size / 2);
+                                }
+                                
+                                int maxCount = 0;
+                                for (int nota : notasCursoSede) {
+                                    int count = Collections.frequency(notasCursoSede, nota);
+                                    if (count > maxCount) {
+                                        maxCount = count;
+                                        mode = nota;
+                                    }
+                                }
+                                
+                                double sumaCuadrado = 0;
+                                for (int nota : notasCursoSede) {
+                                    double diferencia = nota - promedio;
+                                    sumaCuadrado += diferencia * diferencia;
+                                }
+                                double varianza = sumaCuadrado / notasCursoSede.size();
+                                double desviacionEstandar = Math.sqrt(varianza);
+                                
+                                // Mostrar las estadísticas
+                                System.out.println("Promedio: " + promedio);
+                                System.out.println("Mediana: " + mediana);
+                                System.out.println("Moda: " + mode);
+                                System.out.println("Máximo: " + max);
+                                System.out.println("Mínimo: " + min);
+                                System.out.println("Desviación Estándar: " + desviacionEstandar);
+                                
+                            } else {
+                                System.out.println("No se asignaron notas para este curso en esta sede.");
+                            }
+                            
+                            System.out.println("================================================");
                         }
                     }
-                    
+
+                                        
                     break;
 
                 case 4:
