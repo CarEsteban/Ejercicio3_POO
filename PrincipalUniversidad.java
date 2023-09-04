@@ -201,6 +201,7 @@ public class PrincipalUniversidad{
 
 
                 case 3:
+                    System.out.println(estudiantes.get(0).getCursos());
                     break;
 
                 case 4:

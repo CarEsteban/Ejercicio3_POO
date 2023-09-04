@@ -57,8 +57,7 @@ public class Sede {
     }
 
     
-    public int getRegistrados(){
-        int registrados = 0 ;
+    public int getRegistrados(int registrados){
         return registrados;
     }
 
