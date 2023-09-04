@@ -10,7 +10,7 @@ public class PrincipalUniversidad{
         int opcMenu = 0,opcSede=0,opc=0,aux=0;
         Scanner scan = new Scanner(System.in);
 
-        ArrayList<Curso> cursosEstudiantes = new ArrayList<Curso>();
+        ArrayList<ArrayList<Curso>> cursosEstudiantes = new ArrayList<ArrayList<Curso>>();
         ArrayList<Curso> cursosbase = new ArrayList<Curso>();
 
         cursosbase.add(new Curso("Matemática",01 ));
@@ -176,15 +176,16 @@ public class PrincipalUniversidad{
 
                         }
 
-                        estudiantes.get(aggEst-1).setCursos(cursosbase);
+                        cursosEstudiantes.add(cursosbase);
+
+                        estudiantes.get(aggEst-1).setCursos(cursosEstudiantes.get(aggEst-1));
 
                         System.out.println("===========================================");
-                        for (Estudiante estudiante : estudiantes) {
-                            System.out.println(estudiante.getNombres());
-                            for(Estudiante estudiante2 : estudiantes){
-                                System.out.println(estudiante2.getCursos());
-                            }
-                        }
+                        System.out.println(estudiantes.get(aggEst-1).getNombres());
+                        System.out.println(estudiantes.get(aggEst-1).getCursos());
+                        System.out.println("===========================================");
+                        System.out.println(estudiantes.get(aggEst).getNombres());
+                        System.out.println(estudiantes.get(aggEst).getCursos());
                         System.out.println("===========================================");
 
 
