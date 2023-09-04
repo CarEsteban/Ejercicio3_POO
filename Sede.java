@@ -1,82 +1,73 @@
 import java.util.ArrayList;
-import java.math.*;
-public class Sede {
-    //Atributos
-    String nombreSede;
-    int ID;
-    ArrayList<Curso> cursos = new ArrayList<Curso>();
-    ArrayList<Estudiante> estudiante = new ArrayList<Estudiante>();
-    
-    //Métodos
 
-    public Sede(int ID, String nombreSede, ArrayList<Estudiante> estudiante) {
+/**
+ * Clase que representa una sede en una universidad.
+ */
+public class Sede {
+    // Atributos
+
+    private String nombreSede;
+    private int ID;
+    private ArrayList<Curso> cursos = new ArrayList<Curso>();
+    private ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
+
+    // Métodos
+
+    /**
+     * Constructor para crear un objeto Sede.
+     *
+     * @param ID          El identificador único de la sede.
+     * @param nombreSede  El nombre de la sede.
+     * @param estudiantes La lista de estudiantes asociados a la sede.
+     */
+    public Sede(int ID, String nombreSede, ArrayList<Estudiante> estudiantes) {
         this.ID = ID;
         this.nombreSede = nombreSede;
-        this.estudiante = estudiante;
+        this.estudiantes = estudiantes;
     }
 
-    public void setCursos(ArrayList<Curso> cursos){
+    /**
+     * Establece la lista de cursos asociados a la sede.
+     *
+     * @param cursos La lista de cursos a asignar a la sede.
+     */
+    public void setCursos(ArrayList<Curso> cursos) {
         this.cursos = cursos;
     }
 
+    /**
+     * Obtiene el nombre de la sede.
+     *
+     * @return El nombre de la sede.
+     */
     public String getNombreSede() {
         return nombreSede;
     }
 
+    /**
+     * Obtiene la lista de cursos asociados a la sede.
+     *
+     * @return La lista de cursos asociados a la sede.
+     */
     public ArrayList<Curso> getCursos() {
         return cursos;
     }
 
+    /**
+     * Obtiene la lista de estudiantes asociados a la sede.
+     *
+     * @return La lista de estudiantes asociados a la sede.
+     */
     public ArrayList<Estudiante> getEstudiante() {
-        return estudiante;
+        return estudiantes;
     }
 
-    public int getID(){
+    /**
+     * Obtiene el identificador único de la sede.
+     *
+     * @return El identificador único de la sede.
+     */
+    public int getID() {
         return ID;
     }
-
-    // public int getNotaCurso(int i){
-    //     return cursos.get(i).getNota();
-    // }
-
-    
-    public double getPromedio(){
-        double promedio = 0 ;
-        return promedio;
-    }
-
-    public int getMediana(){
-        int mediana = 0 ;
-        return mediana;
-    }
-
-    public int getModa(){
-        int moda = 0 ;
-        return moda;
-    }
-
-    
-    public double getDesviacion(){
-        int desviacion = 0 ;
-        return desviacion;
-    }
-
-    
-    public int getRegistrados(int registrados){
-        return registrados;
-    }
-
-    
-    public int getMaximo(){
-        int maximo = 0 ;
-        return maximo;
-    }
-    
-    public int getMinimo(){
-        int minimo = 0 ;
-        return minimo;
-    }
-
-
-
 }

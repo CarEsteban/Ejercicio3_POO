@@ -2,17 +2,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-import java.math.*;
+/**
+ * Clase principal que maneja las operaciones de una universidad.
+ */
 
 public class PrincipalUniversidad{
+    
+    /**
+     * Método principal que inicia la ejecución del programa.
+     *
+     * @param args Los argumentos de línea de comandos (no se utilizan).
+     * @throws InterruptedException Si ocurre un error en la ejecución.
+     */
     public static void main(String[] args) throws InterruptedException {
 
         boolean menu = true;
         int opcMenu = 0,opcSede=0,opc=0,aux=0;
         Scanner scan = new Scanner(System.in);
 
-        ArrayList<ArrayList<Curso>> cursosEstudiantes = new ArrayList<ArrayList<Curso>>();
         ArrayList<Curso> cursosbase = new ArrayList<Curso>();
+
+        // Agregar cursos bases para las notas
 
         cursosbase.add(new Curso("Matemática",01 ));
         cursosbase.add(new Curso("Lenguaje",02 ));
@@ -33,6 +43,8 @@ public class PrincipalUniversidad{
         sedes.add(new Sede(3, "Escuintla" , null));
             
         //Se agregó este fragmento del código para poder contador cuantos estudiantes hay por sede y así poder usar el dato para las estadísticas
+        // Se inicializa el contador de estudiantes por sede
+
         for (int i = 0; i < sedes.size(); i++) {
             estudiantesPorSede.add(0);
 
@@ -127,72 +139,6 @@ public class PrincipalUniversidad{
                     opc=0;
                     while(opc==0){
                         
-                        // for(int i=0; i<estudiantes.size();i++){
-                        //     System.out.println("Estos son los estudiantes que aún no les han asignado notas:");
-                        
-                        //     if (estudiantes.isEmpty()) {
-                        //         System.out.println("Todavía no hay estudiantes");
-                        //         break;
-                        //     } else {
-
-                        //         boolean hayEstudiantesConCursosNulos = false;
-
-                        //         for (int j = 0; j < estudiantes.size(); j++) {
-                        //             if (estudiantes.get(j).getCursos() == null) {
-                        //                 System.out.println(estudiantes.get(j).getCodigoUnico() + ". " + estudiantes.get(j).getNombres());
-                        //                 hayEstudiantesConCursosNulos = true; 
-                        //             }
-                        //         }
-
-                        //         if (!hayEstudiantesConCursosNulos) {
-                        //             System.out.println("Ya no hay más estudiantes");
-                        //             opc = 1;
-                        //         }
-
-                        //     }
-                            
-                        //     if(opc==1){
-                        //         break;
-                        //     }
-
-                        //     System.out.println("A que estudiante desea agregarle sus notas? (0 para no asignar)");
-                        //     int aggEst = scan.nextInt();
-                        //     scan.nextLine();
-
-                        //     if(aggEst==0){
-                        //         opc=1;
-                        //         break;
-                        //     }
-
-                        //     System.out.println("Estudiante seleccionado: " + estudiantes.get(aggEst-1).getNombres());
-
-
-                        //     System.out.println("Estos son los cursos actuales");
-
-                        //     System.out.println("===========================================");
-                        //     for (Curso curso : cursosbase) {
-                        //         System.out.println(curso.getID_curso() + ". " + curso.getNombre());
-                        //     }
-                        //     System.out.println("===========================================");
-
-                        //     for (Curso curso : cursosbase) {
-                        //         System.out.println("Ingrese la nota del curso de " + curso.getNombre());
-                        //         int nota =  scan.nextInt();
-                        //         if(nota>100 || nota<0){
-                        //             System.out.println("Lo siento, esta nota no es real rey");
-                        //             break;
-                        //         }else{
-                        //             curso.setNota(nota);
-                        //         }
-
-
-                        //     }
-
-                        //     cursosEstudiantes.add(cursosbase);
-
-                        //     estudiantes.get(aggEst-1).setCursos(cursosEstudiantes.get(i));
-
-                        // }
                         for (int i = 0; i < estudiantes.size(); i++) {
                             System.out.println("Estos son los estudiantes que aún no les han asignado notas:");
                         
@@ -230,7 +176,6 @@ public class PrincipalUniversidad{
                         
                             System.out.println("Estudiante seleccionado: " + estudiantes.get(aggEst - 1).getNombres());
                         
-                            // Crea una nueva lista de cursos para el estudiante
                             ArrayList<Curso> cursosEstudiante = new ArrayList<Curso>();
                         
                             System.out.println("Estos son los cursos actuales");
