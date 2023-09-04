@@ -178,7 +178,7 @@ public class PrincipalUniversidad{
                             System.out.println("===========================================");
 
                             for (Curso curso : cursosbase) {
-                                System.out.println("Ingrese la del curso de " + curso.getNombre());
+                                System.out.println("Ingrese la nota del curso de " + curso.getNombre());
                                 int nota =  scan.nextInt();
                                 if(nota>100 || nota<0){
                                     System.out.println("Lo siento, esta nota no es real rey");
@@ -198,10 +198,15 @@ public class PrincipalUniversidad{
 
 
                     }
+                    break;
 
 
                 case 3:
-                    System.out.println(estudiantes.get(0).getCursos());
+                    System.out.println("BIENVENIDO A LAS ESTADÍSTICAS POR SEDE");
+                    for (Sede sede : sedes) {
+                        System.out.println("Estadísticas de: "+sede.getNombreSede());
+                        
+                    }
                     break;
 
                 case 4:
